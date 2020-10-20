@@ -6,8 +6,10 @@
 
 function makePerson(name, age) {
 	// add code here
-
-
+let user  = {};
+user.name = name;
+user.age = age;
+return user;
 }
 
 var vicky = makePerson('Vicky', 24);
@@ -28,8 +30,10 @@ var vicky = makePerson('Vicky', 24);
 /*** CHALLENGE 1 of 3 ***/
 
 var personStore = {
-	// add code here
-
+  // add code here
+  greet: function(){
+    console.log("Hello");
+  }
 
 };
 
@@ -41,9 +45,11 @@ var personStore = {
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromPersonStore(name, age) {
-	// add code here
-
-
+  // add code here
+  let person = Object.create({
+    name:name,
+    age: age
+  });
 }
 
 var sandra = personFromPersonStore('Sandra', 26);
@@ -59,6 +65,16 @@ var sandra = personFromPersonStore('Sandra', 26);
 /*** CHALLENGE 3 of 3 ***/
 
 // add code here
+let person = Object.create({
+  name:name,
+  age: age,
+  introduce: function(){
+    console.log("Hi, my is name ${person.name}")
+
+},
+},
+);
+
 
 // sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
@@ -73,8 +89,10 @@ var sandra = personFromPersonStore('Sandra', 26);
 /*** CHALLENGE 1 of 3 ***/
 
 function PersonConstructor() {
-	// add code here
-
+  // add code here
+ this.greet = function(){
+   console.log('hello')
+ }
 
 }
 
@@ -89,11 +107,12 @@ var simon = new PersonConstructor;
 
 function personFromConstructor(name, age) {
 	// add code here
-
+   this.name = name,
+   this.age = age
 
 }
 
-var mike = personFromConstructor('Mike', 30);
+var mike = new personFromConstructor('Mike', 30);
 
 
 // /********* Uncomment these lines to test your work! *********/
@@ -115,11 +134,15 @@ var mike = personFromConstructor('Mike', 30);
 ****************************************************************/
 
 /*** CHALLENGE 1 of 3 ***/
-
 class PersonClass {
-	constructor() {
+  
+	constructor(name) {
     // add code here
-
+   this[name] = name;
+   
+   }
+   greet(){
+    console.log('hello')
 
 	}
 
@@ -135,7 +158,14 @@ var george = new PersonClass;
 
 
 /*** CHALLENGE 2 of 3 ***/
-
+class DeveloperClass extends PersonClass {
+  constructor(name){
+    super(name);
+  }
+  introduce() {
+    console.log(`Hello World, my name is ${this.name}`);
+  }
+}
 // add code here
 
 
@@ -154,6 +184,8 @@ var userFunctionStore = {
   sayType: function() {
     console.log("I am a " + this.type);
   }
+
+
 }
 
 function userFactory(name, score) {
